@@ -39,15 +39,17 @@ class TodoList
 
   def give_up!
     @todo_list.each do |todo|
-      @complete_todos.concat(todo)
+      @complete_todos << todo
     end
-    unless @complete_todos.empty?
-      @complete_todos.each do |todo|
-        @complete_todos.concat(todo)
-      end
+    @incomplete_todos.each do |todo|
+      @complete_todos << todo
     end
-#    binding.irb
+    completed_tasks = []
     # Marks all todos as complete
-    return @complete_todos
+    @complete_todos.each do |todo|
+       completed_tasks << todo.task
+    end
+
+    return completed_tasks
   end
 end
